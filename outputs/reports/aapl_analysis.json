@@ -1,0 +1,289 @@
+{
+  "metadata": {
+    "symbol": "AAPL",
+    "company_name": "Apple Inc.",
+    "sector": "Technology",
+    "industry": "Consumer Electronics",
+    "generated_at": "2026-02-03T08:11:32.280746",
+    "report_version": "1.0.0",
+    "engine_version": "2.0.0",
+    "pipeline_version": "1.0.0"
+  },
+  "executive_summary": {
+    "overall_signal": {
+      "direction": "SELL",
+      "confidence": 0.4898,
+      "strength": "WEAK"
+    },
+    "volatility_regime": "HIGH",
+    "recommendation": "NO TRADE: Weak or conflicting signals. Preserve capital and wait for better opportunity.",
+    "signal_distribution": {
+      "bullish": 2,
+      "bearish": 1,
+      "neutral": 2
+    }
+  },
+  "analysis_period": {
+    "start": "2015-01-01",
+    "end": "2026-02-03",
+    "daily_records": 2787,
+    "weekly_records": 580,
+    "monthly_records": 134
+  },
+  "data_quality": {
+    "overall_score": 98.22,
+    "grade": "EXCELLENT",
+    "dimensions": {
+      "completeness": {
+        "score": 100,
+        "weight": 0.4
+      },
+      "accuracy": {
+        "score": 94.08,
+        "weight": 0.3
+      },
+      "consistency": {
+        "score": 100,
+        "weight": 0.2
+      },
+      "timeliness": {
+        "score": 100,
+        "weight": 0.1
+      }
+    }
+  },
+  "market_profile": {
+    "returns": {
+      "annualized": 0.248722
+    },
+    "risk": {
+      "annualized_volatility": 0.288216,
+      "sharpe_ratio": 0.7242,
+      "sortino_ratio": 1.0021,
+      "calmar_ratio": 0.6422,
+      "max_drawdown": -0.387297
+    },
+    "distribution": {
+      "skewness": 0.146242,
+      "kurtosis": 6.560519,
+      "is_normal": false
+    },
+    "trend": {
+      "hurst_exponent": 0.598856,
+      "character": "TRENDING"
+    }
+  },
+  "statistical_tests": {
+    "jarque_bera": {
+      "is_normal": false,
+      "test": "normality"
+    },
+    "adf": {
+      "is_stationary": true,
+      "test": "unit_root"
+    },
+    "kpss": {
+      "is_stationary": true,
+      "test": "trend_stationarity"
+    },
+    "ljung_box": {
+      "has_autocorrelation": true,
+      "test": "autocorrelation"
+    },
+    "arch": {
+      "has_arch_effects": true,
+      "test": "volatility_clustering"
+    }
+  },
+  "indicator_families": {
+    "momentum": {
+      "signal": "STRONG_SELL",
+      "confidence": 0.7333,
+      "weight": 0.25,
+      "indicators": {
+        "rsi": {
+          "direction": "NEUTRAL",
+          "confidence": 0.5,
+          "value": 62.453009,
+          "zone": "BULLISH",
+          "factors": [
+            "RSI neutral at 62.5",
+            "RSI momentum rising"
+          ]
+        },
+        "stochastic": {
+          "direction": "STRONG_SELL",
+          "confidence": 0.85,
+          "value": 88.363794,
+          "zone": "OVERBOUGHT",
+          "factors": [
+            "Stochastic extremely overbought at 88.4"
+          ]
+        },
+        "williams_r": {
+          "direction": "STRONG_SELL",
+          "confidence": 0.85,
+          "value": -1.773109,
+          "zone": "OVERBOUGHT",
+          "factors": [
+            "Williams %R extremely overbought at -1.8"
+          ]
+        }
+      }
+    },
+    "trend": {
+      "signal": "BUY",
+      "confidence": 0.5833,
+      "weight": 0.25,
+      "indicators": {
+        "macd": {
+          "direction": "BUY",
+          "confidence": 0.6,
+          "value": -2.18501,
+          "zone": "BULLISH",
+          "factors": [
+            "Histogram expanding bullish",
+            "MACD below zero line"
+          ]
+        },
+        "adx": {
+          "direction": "NEUTRAL",
+          "confidence": 0.4,
+          "value": 26.208697,
+          "zone": "WEAK_BULLISH",
+          "factors": [
+            "Weak/no trend (ADX=26.2)",
+            "+DI above -DI (bullish directional)",
+            "+DI crossed above -DI (bullish)"
+          ]
+        },
+        "supertrend": {
+          "direction": "BUY",
+          "confidence": 0.75,
+          "value": 243.183986,
+          "zone": "UPTREND",
+          "factors": [
+            "Price 9.9% from Supertrend"
+          ]
+        }
+      }
+    },
+    "volatility": {
+      "signal": "NEUTRAL",
+      "confidence": 0.55,
+      "weight": 0.15,
+      "indicators": {
+        "bollinger": {
+          "direction": "SELL",
+          "confidence": 0.55,
+          "value": 0.939141,
+          "zone": "UPPER_ZONE",
+          "factors": [
+            "Price near upper band",
+            "Volatility contracting"
+          ]
+        },
+        "keltner": {
+          "direction": "BUY",
+          "confidence": 0.55,
+          "value": 0.911543,
+          "zone": "UPPER_ZONE",
+          "factors": [
+            "Price above Keltner middle (bullish)"
+          ]
+        }
+      }
+    },
+    "volume": {
+      "signal": "BUY",
+      "confidence": 0.5667,
+      "weight": 0.15,
+      "indicators": {
+        "obv": {
+          "direction": "BUY",
+          "confidence": 0.65,
+          "value": 6474879900.0,
+          "zone": "ACCUMULATION",
+          "factors": [
+            "OBV above its 21-day MA (accumulation)"
+          ]
+        },
+        "mfi": {
+          "direction": "BUY",
+          "confidence": 0.55,
+          "value": 53.99874,
+          "zone": "BULLISH",
+          "factors": [
+            "MFI bullish at 54.0"
+          ]
+        },
+        "cmf": {
+          "direction": "NEUTRAL",
+          "confidence": 0.5,
+          "value": 0.016612,
+          "zone": "NEUTRAL",
+          "factors": [
+            "Neutral money flow (CMF=0.017)"
+          ]
+        }
+      }
+    },
+    "system": {
+      "signal": "NEUTRAL",
+      "confidence": 0.5,
+      "weight": 0.2,
+      "indicators": {
+        "ichimoku": {
+          "direction": "NEUTRAL",
+          "confidence": 0.5,
+          "value": 0.0,
+          "zone": "NEUTRAL",
+          "factors": [
+            "Price inside cloud",
+            "Cloud is bullish",
+            "Price above Kijun-sen",
+            "Chikou below price",
+            "Score: 2 bullish, 2 bearish"
+          ]
+        }
+      }
+    }
+  },
+  "key_levels": {
+    "bb_upper": 271.7299,
+    "bb_middle": 257.5995,
+    "bb_lower": 243.4691,
+    "kc_upper": 272.2231,
+    "kc_lower": 247.2042,
+    "ichimoku_cloud_top": 275.26,
+    "ichimoku_cloud_bottom": 266.31,
+    "supertrend": 243.184
+  },
+  "divergences": [
+    {
+      "type": "REGULAR_BULLISH",
+      "indicator": "MACD",
+      "strength": 0.0397,
+      "duration_bars": 29
+    }
+  ],
+  "risk_factors": [
+    "Mixed signals across indicator families",
+    "Bullish divergence (1) conflicts with bearish signal - potential reversal"
+  ],
+  "volatility_estimators": {
+    "close_to_close": 0.245197,
+    "parkinson": 0.227558,
+    "garman_klass": 0.23532,
+    "rogers_satchell": 0.232746,
+    "yang_zhang": 0.149071,
+    "gkyz": 0.263094,
+    "hodges_tompkins": 0.255591,
+    "composite": 0.223688
+  },
+  "provenance": {
+    "source": "yahoo_finance",
+    "fetch_timestamp": "2026-02-03T08:08:12.130579",
+    "data_hash": "a1d182ab8adf3d83"
+  }
+}
