@@ -9,6 +9,7 @@ yfinance>=0.2.62
 lxml>=4.9.0  # Required for earnings calendar parsing
 
 # Phase 2-5 Dependencies
+python-dotenv>=1.0.0
 hmmlearn>=0.3.0
 vectorbt>=0.26.0
 arch>=6.0.0

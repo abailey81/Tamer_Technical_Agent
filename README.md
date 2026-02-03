@@ -73,9 +73,13 @@ pip install -r requirements.txt
 
 3. Configure API key:
 
+Create a `.env` file in the project root directory with your Anthropic API key:
+
 ```
-export ANTHROPIC_API_KEY="your-api-key"
+ANTHROPIC_API_KEY=your-api-key-here
 ```
+
+Note: The `.env` file is already included in `.gitignore` to prevent accidental exposure of credentials.
 
 
 ## Usage
@@ -226,7 +230,15 @@ LLM Trade Notes:
 
 ## Configuration
 
-Key parameters in config.py:
+### Environment Variables (.env)
+
+The API key is loaded from a `.env` file in the project root:
+
+```
+ANTHROPIC_API_KEY=your-api-key-here
+```
+
+### Key Parameters (config.py / llm_agent.py)
 
 ```
 Data Collection:

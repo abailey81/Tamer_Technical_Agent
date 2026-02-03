@@ -47,12 +47,17 @@ from pathlib import Path
 
 import pandas as pd
 import numpy as np
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
 
-ANTHROPIC_API_KEY = "YOUR_API_KEY_HERE"
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 CLAUDE_MODEL = "claude-sonnet-4-5-20250929"
 MAX_TOKENS = 12000
 TEMPERATURE = 0.35
