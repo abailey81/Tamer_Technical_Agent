@@ -1,331 +1,168 @@
-# Technical Analyst Agent
+<div align="center">
 
-MSc AI Agents in Asset Management
-IFTE0001 Coursework - Track B
+# Technical Analysis Agent
 
+### Institutional-Grade Quantitative Analysis Pipeline
 
-## Project Overview
+*5-phase architecture · 20+ indicators · HMM regime detection · GARCH volatility · Claude-powered trade notes*
 
-A multi-phase technical analysis pipeline that generates institutional-grade trade recommendations. The system processes historical market data through quantitative analysis, backtesting validation, and LLM-powered narrative generation to produce actionable trade notes with comprehensive JSON output for orchestration.
+<br>
 
+[![Python 3.10-3.12](https://img.shields.io/badge/python-3.10--3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Claude](https://img.shields.io/badge/Claude-Sonnet-CC785C?style=for-the-badge&logo=anthropic&logoColor=white)](https://anthropic.com/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![License](https://img.shields.io/badge/MIT-green?style=for-the-badge)](LICENSE)
 
-## System Architecture
+<br>
 
-```
-Phase 1: Data Pipeline
-    - OHLCV data acquisition via yfinance
-    - Data quality validation and scoring
-    - Statistical tests (ADF, KPSS, Jarque-Bera)
-    - Benchmark correlation analysis
-    - Volatility estimators (Parkinson, Garman-Klass, Yang-Zhang)
+[![GitHub stars](https://img.shields.io/github/stars/abailey81/Tamer_Technical_Agent?style=social)](https://github.com/abailey81/Tamer_Technical_Agent/stargazers)
 
-Phase 2: Technical Indicators
-    - Momentum: RSI, Stochastic, Williams %R
-    - Trend: MACD, ADX, Supertrend, Ichimoku
-    - Volatility: Bollinger Bands, Keltner Channels, ATR
-    - Volume: OBV, MFI, CMF
-    - Weighted signal aggregation with confidence scoring
+---
 
-Phase 3: Market Regime Detection
-    - Hidden Markov Model (3-state: Bull, Bear, Sideways)
-    - GARCH(1,1) volatility modeling
-    - Hurst exponent analysis
-    - Structural break detection (CUSUM)
-    - Strategy recommendation engine
+**A 5-phase quantitative analysis pipeline** that generates institutional-quality trade recommendations through technical indicator analysis, regime detection, walk-forward backtesting, and LLM-powered narrative generation. Outputs a 247-field structured JSON with professional PDF/HTML/Markdown reports.
 
-Phase 4: Backtesting Engine
-    - Signal-based strategy execution
-    - Walk-forward optimization (5 periods)
-    - Monte Carlo simulation (500 paths)
-    - Transaction cost modeling (10 bps)
-    - Performance metrics calculation
+<br>
 
-Phase 4B: Risk Analytics
-    - CAPM alpha/beta decomposition
-    - Regime-conditional performance
-    - Signal quality assessment
-    - Historical stress testing
-    - Drawdown analysis
+[Pipeline](#pipeline) · [Indicators](#technical-indicators) · [Regime Detection](#regime-detection) · [Backtesting](#backtesting) · [Getting Started](#getting-started)
 
-Phase 5: LLM Trade Notes
-    - Claude Sonnet 4.5 integration
-    - Investment thesis generation
-    - Multi-format output (JSON, PDF, MD, HTML, TXT)
-    - 247-field structured data for orchestration
-```
+</div>
 
+<br>
 
-## Installation
+## Highlights
 
-1. Create and activate virtual environment:
+<table>
+<tr>
+<td width="50%">
 
-```
-python -m venv venv
-source venv/bin/activate        # Linux/Mac
-venv\Scripts\activate           # Windows
-```
+**5-Phase Pipeline**
+- Phase 1: Data collection + 7 volatility estimators + quality scoring
+- Phase 2: 20+ indicators across 5 families with confidence scoring
+- Phase 3: HMM regime detection + GARCH + Hurst exponent
+- Phase 4: Walk-forward backtesting + Monte Carlo + risk attribution
+- Phase 5: Claude Sonnet trade note generation
 
-2. Install dependencies:
+</td>
+<td width="50%">
+
+**Structured Output**
+- 247-field JSON for orchestration and decision support
+- Professional PDF reports via ReportLab (8-10 pages)
+- Interactive HTML reports with SVG visualizations
+- Markdown reports for documentation
+- CAPM alpha/beta, VaR/CVaR, factor attribution
+
+</td>
+</tr>
+</table>
+
+---
+
+## Pipeline
 
 ```
+Phase 1: Data Collection          Phase 2: Indicators           Phase 3: Regime
+├─ yfinance OHLCV               ├─ Momentum (25%)              ├─ 3-state HMM
+├─ 4-dimension quality scoring   ├─ Trend (25%)                 ├─ GARCH(1,1)
+├─ 7 volatility estimators       ├─ Volatility (15%)            ├─ Hurst exponent
+├─ 5 hypothesis tests            ├─ Volume (15%)                └─ CUSUM breaks
+└─ VIX regime classification     └─ Ichimoku (20%)
+
+Phase 4: Backtesting             Phase 5: Trade Notes
+├─ Walk-forward (5 periods)      ├─ Claude Sonnet 4.5
+├─ Monte Carlo (500 paths)       ├─ Investment thesis
+├─ Transaction cost modeling     ├─ Bull/base/bear scenarios
+├─ Kelly / vol-target sizing     ├─ Risk analysis
+└─ Risk attribution (52 fields)  └─ Catalysts & risks
+```
+
+---
+
+## Technical Indicators
+
+| Family | Weight | Indicators |
+|:-------|:------:|:-----------|
+| **Momentum** | 25% | RSI (14), Stochastic %K/%D, Williams %R, ROC |
+| **Trend** | 25% | MACD (12/26/9), ADX/DMI, Aroon, Supertrend |
+| **Volatility** | 15% | Bollinger Bands, Keltner Channels, Donchian Channels |
+| **Volume** | 15% | OBV, Chaikin Money Flow, MFI, VWMA |
+| **Ichimoku** | 20% | Tenkan, Kijun, Senkou A/B, Chikou |
+
+<details>
+<summary><b>7 Volatility Estimators</b></summary>
+
+| Estimator | Method |
+|:----------|:-------|
+| Close-to-Close | Baseline standard deviation |
+| Parkinson (1980) | High-Low range based |
+| Garman-Klass (1980) | Full OHLC utilization |
+| Rogers-Satchell (1991) | Drift-adjusted |
+| Yang-Zhang (2000) | Gap-adjusted (overnight returns) |
+| GKYZ | Hybrid Garman-Klass / Yang-Zhang |
+| Hodges-Tompkins | Bias-corrected finite sample |
+
+</details>
+
+<details>
+<summary><b>Risk Attribution (52 fields)</b></summary>
+
+- CAPM alpha/beta decomposition with t-stats and p-values
+- Factor attribution analysis and information ratio
+- Regime-conditional performance (Bull/Bear/Sideways)
+- Historical stress testing (COVID crash, 2022 bear, 2018 Q4)
+- VaR/CVaR at 95% and 99% confidence levels
+- Drawdown analysis and recovery time estimation
+
+</details>
+
+---
+
+## Getting Started
+
+```bash
+git clone https://github.com/abailey81/Tamer_Technical_Agent.git
+cd Tamer_Technical_Agent
+
+python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
+
+# Set API key
+echo "ANTHROPIC_API_KEY=sk-ant-..." > .env
+
+# Run analysis
+python run_demo.py                        # Default: AAPL
+python run_demo.py --symbol MSFT          # Custom ticker
+python run_demo.py --years 10             # 10 years of data
+python run_demo.py --skip-llm             # Skip LLM (faster)
 ```
 
-3. Configure API key:
-
-Create a `.env` file in the project root directory with your Anthropic API key:
-
-```
-ANTHROPIC_API_KEY=your-api-key-here
-```
-
-Note: The `.env` file is already included in `.gitignore` to prevent accidental exposure of credentials.
-
-
-## Usage
-
-Basic execution:
-
-```
-python run_demo.py --symbol AAPL
-```
-
-Command line options:
-
-```
---symbol        Stock ticker symbol (default: AAPL)
---years         Years of historical data (default: 10)
---output-dir    Output directory path (default: ./output)
---skip-llm      Skip LLM trade note generation
---verbose       Enable verbose logging
-```
-
-Examples:
-
-```
-python run_demo.py --symbol MSFT --years 5
-python run_demo.py --symbol GOOGL --skip-llm
-python run_demo.py --symbol NVDA --output-dir ./reports --verbose
-```
-
+---
 
 ## Project Structure
 
 ```
-src/
-    data_collector.py         Phase 1: Data acquisition and validation
-    technical_indicators.py   Phase 2: Technical indicator computation
-    regime_detector.py        Phase 3: Market regime classification
-    backtest_engine.py        Phase 4: Strategy backtesting
-    risk_analytics.py         Phase 4B: Risk attribution analysis
-    llm_agent.py              Phase 5: Trade note generation
-    report_generator.py       Multi-format report output
-    trade_note_reports.py     PDF report generation
-    config.py                 Configuration parameters
-
-run_demo.py                   Main execution script
-requirements.txt              Python dependencies
-README.md                     Documentation
+Tamer_Technical_Agent/
+├── run_demo.py                     # Main orchestrator (2,497 lines)
+├── src/
+│   ├── config.py                   # Configuration & enums
+│   ├── data_collector.py           # Phase 1: Data pipeline + quality scoring
+│   ├── technical_indicators.py     # Phase 2: 20+ indicators
+│   ├── regime_detector.py          # Phase 3: HMM + GARCH + Hurst
+│   ├── backtest_engine.py          # Phase 4: Walk-forward + Monte Carlo
+│   ├── risk_analytics.py           # Phase 4B: Risk attribution (52 fields)
+│   ├── llm_agent.py                # Phase 5: Claude trade notes
+│   ├── report_generator.py         # JSON/HTML/Markdown output
+│   └── trade_note_reports.py       # Professional PDF generation
+├── requirements.txt
+└── outputs/                        # Generated reports
 ```
 
+---
 
-## Output Files
+<div align="center">
 
-```
-output/
-    {SYMBOL}_trade_note.json    Structured data (247 fields)
-    {SYMBOL}_trade_note.pdf     Professional report
-    {SYMBOL}_trade_note.md      Markdown summary
-    {SYMBOL}_trade_note.html    Interactive web report
-    {SYMBOL}_trade_note.txt     Plain text version
-```
+**[MIT License](LICENSE)**
 
+Built with Claude, vectorbt, hmmlearn, arch, and ReportLab
 
-## JSON Output Structure
-
-The JSON output contains 247 fields organized into the following categories:
-
-Identification (11 fields)
-- note_id, symbol, company_name, sector, industry
-- generated_at, analysis_period, total_records
-
-Recommendation (5 fields)
-- recommendation (BUY/SELL/HOLD)
-- conviction (HIGH/MEDIUM/LOW)
-- confidence (0-100)
-- time_horizon
-- risk_rating
-
-Trade Setup (13 fields)
-- entry, stop_loss
-- target_1, target_2, target_3, target_price
-- risk_reward, position_size, max_size
-- sizing_method, sizing_rationale
-
-Technical Scores (9 fields)
-- overall_score, technical_score
-- momentum_score, trend_score, volatility_score, volume_score
-- risk_score
-- score_explanations, score_breakdown
-
-Backtest Metrics (24 fields)
-- backtest_cagr, backtest_sharpe, backtest_sortino, backtest_calmar
-- backtest_max_dd, backtest_hit_rate, backtest_profit_factor
-- backtest_total_trades, backtest_avg_win, backtest_avg_loss
-- backtest_expectancy, backtest_total_return, backtest_volatility
-
-Risk Metrics (7 fields)
-- var_95, var_99
-- cvar_95, cvar_99
-- var_95_strategy, cvar_95_strategy
-
-Phase 3: Regime Detection (37 fields)
-- market_regime, regime_probability, regime_confidence
-- volatility_regime, current_volatility, volatility_percentile
-- garch_omega, garch_alpha, garch_beta, garch_persistence
-- volatility_forecast_1d, volatility_forecast_5d
-- hurst_p3, hurst_classification, hurst_r_squared
-- structural_breaks, days_since_break
-- strategy_recommendation, position_bias, strategy_confidence
-
-Phase 4B: Risk Attribution (52 fields)
-- alpha, beta, r_squared, alpha_t_stat, alpha_p_value
-- tracking_error, information_ratio, skill_contribution
-- performance_grade, risk_level, alpha_confidence, strategy_robustness
-- perf_bull_return, perf_bull_sharpe, perf_bear_return, perf_bear_sharpe
-- stress test results for COVID crash, 2022 bear, 2018 Q4
-
-Narratives (8 fields)
-- investment_thesis
-- executive_summary
-- technical_analysis
-- backtest_analysis
-- risk_analysis
-- scenarios (bull/base/bear with probabilities)
-- catalysts
-- risks
-
-
-## Coursework Requirements
-
-Required Metrics:
-- CAGR (Compound Annual Growth Rate)
-- Sharpe Ratio (risk-adjusted return)
-- Sortino Ratio (downside risk-adjusted)
-- Calmar Ratio (drawdown-adjusted)
-- Maximum Drawdown
-- Hit Rate (win percentage)
-- Profit Factor (gross profit / gross loss)
-- VaR 95% and 99% (Value at Risk)
-- CVaR 95% and 99% (Conditional VaR)
-
-LLM Trade Notes:
-- Investment thesis with quantitative rationale
-- Executive summary with actionable recommendation
-- Technical analysis narrative
-- Backtest performance analysis
-- Risk assessment with mitigation strategies
-- Scenario analysis (bull/base/bear cases)
-
-
-## Configuration
-
-### Environment Variables (.env)
-
-The API key is loaded from a `.env` file in the project root:
-
-```
-ANTHROPIC_API_KEY=your-api-key-here
-```
-
-### Key Parameters (config.py / llm_agent.py)
-
-```
-Data Collection:
-    DEFAULT_YEARS = 10
-    DATA_SOURCE = "yfinance"
-
-Technical Indicators:
-    RSI_PERIOD = 14
-    MACD_FAST = 12
-    MACD_SLOW = 26
-    MACD_SIGNAL = 9
-    BB_PERIOD = 20
-    BB_STD = 2.0
-
-Backtesting:
-    INITIAL_CAPITAL = 100000
-    TRANSACTION_COST = 0.001
-    SLIPPAGE = 0.0005
-
-Risk Management:
-    MAX_POSITION_SIZE = 0.10
-    STOP_LOSS_ATR = 2.0
-    TAKE_PROFIT_ATR = 4.0
-
-LLM Configuration:
-    CLAUDE_MODEL = "claude-sonnet-4-5-20250929"
-    MAX_TOKENS = 12000
-    TEMPERATURE = 0.3
-```
-
-
-## Module Reference
-
-data_collector.py:
-```
-from data_collector import DataCollector
-collector = DataCollector()
-result = collector.collect(symbol="AAPL", years=10)
-```
-
-technical_indicators.py:
-```
-from technical_indicators import TechnicalAnalyzer
-analyzer = TechnicalAnalyzer()
-result = analyzer.analyze(df, symbol="AAPL")
-```
-
-regime_detector.py:
-```
-from regime_detector import RegimeDetector
-detector = RegimeDetector()
-result = detector.analyze(df, symbol="AAPL")
-```
-
-backtest_engine.py:
-```
-from backtest_engine import BacktestEngine
-engine = BacktestEngine()
-result = engine.run(df, signals, symbol="AAPL")
-```
-
-risk_analytics.py:
-```
-from risk_analytics import RiskAnalyticsEngine
-engine = RiskAnalyticsEngine()
-result = engine.analyze(strategy_returns, benchmark_returns, signals, regimes)
-```
-
-llm_agent.py:
-```
-from llm_agent import generate_trade_note
-note = generate_trade_note(p1, p2, p3, p4, p4b)
-json_output = note.to_dict()
-```
-
-
-## Version History
-
-9.2.2  Fixed Phase 3/4B dataclass attribute extraction
-9.2.1  Fixed stress test None handling
-9.2.0  Added 247-field comprehensive JSON output
-9.1.2  Fixed PDF layout issues
-9.1.1  Fixed VaR/CVaR extraction from Phase 4
-9.1.0  Initial coursework submission
-
-
-## Author
-
-MSc AI Agents in Asset Management
-IFTE0001 Coursework - Track B: Technical Analyst Agent
+</div>
